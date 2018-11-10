@@ -36,7 +36,9 @@ class Login extends React.Component {
             username : '',
             password : '',
             usernameRequired: "dispNone",
-            passwordRequired : "dispNone"
+            passwordRequired : "dispNone",
+            loggedIn : false,
+            loginSuccess : true
 
         }
     }
@@ -106,6 +108,19 @@ class Login extends React.Component {
                                 </FormHelperText>
                             </FormControl>
                         </CardContent>
+                        <br /><br />
+                        {this.state.loggedIn === true &&
+                        <FormControl>
+                            <span className="successText">Login Successful! </span>
+                        </FormControl>
+                        }
+                        {
+                            this.state.loginSuccess === false &&
+                            <FormControl>
+                                <span className="red">Incorrect username and/or password </span>
+                            </FormControl>
+                        }
+                        <br /><br />
                         <CardActions>
                             <Button variant="contained" color="primary" onClick={this.loginClickHandler}>Login</Button>
                         </CardActions>
