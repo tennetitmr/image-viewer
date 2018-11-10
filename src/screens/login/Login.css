@@ -6,3 +6,22 @@
     color: #fff!important;
     font-size: 20px!important;
 }
+
+.app-login{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top : 15%;
+    maxWidth: 345 px;
+
+}
+
+.dispNone {
+    display: none;
+}
+.dispBlock {
+    display: block;
+}
+.red {
+    color: red;
+}
