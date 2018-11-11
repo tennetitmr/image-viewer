@@ -13,8 +13,7 @@ import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import './Login.css';
 import {withStyles} from '@material-ui/core/styles';
-import {Header} from "../../common/header/Header";
-
+import Header from "../../common/header/Header";
 const styles = theme => ({
         root: {
             display: 'flex',

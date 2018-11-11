@@ -1,4 +1,5 @@
 import React, {Component} from  'react';
+import Header from "../../common/header/Header";
 class Home extends Component {
      userSelfURI = 'https://api.instagram.com/v1/users/self/?access_token=YourAccessToken';
     constructor(){
@@ -15,6 +16,7 @@ class Home extends Component {
     render (){
         return (
             <div>
+                <Header/>
                 <div>
                     <p>Home</p>
                 </div>

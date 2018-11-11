@@ -6,3 +6,16 @@
     color: #fff!important;
     font-size: 20px!important;
 }
+.search-box {
+    border-radius: 4px;
+    width: 300px;
+    background: #c0c0c0;
+}
+.search-container {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+.searchIcon {
+    color:  #263238;
+}
