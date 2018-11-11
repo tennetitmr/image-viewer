@@ -11,9 +11,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import './Login.css'
-
+import './Login.css';
 import {withStyles} from '@material-ui/core/styles';
+import {Header} from "../../common/header/Header";
 
 const styles = theme => ({
         root: {
@@ -73,15 +73,7 @@ class Login extends React.Component {
         const {classes} = this.props;
         return (
             <div className={classes.root}>
-                <div>
-                    <AppBar className="app-header">
-                        <Toolbar>
-                            <Typography className="app-logo">
-                                Image Viewer
-                            </Typography>
-                        </Toolbar>
-                    </AppBar>
-                </div>
+                <Header/>
                 <div className={classes.card}>
                     <Card>
                         <CardContent>
