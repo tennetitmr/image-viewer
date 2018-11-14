@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -21,7 +19,7 @@ const styles = theme => ({
             justifyContent: 'center'
         },
         card: {
-            marginTop: '5%',
+            marginTop: '1%',
             maxWidth: 345
         }
 
@@ -37,9 +35,15 @@ class Login extends React.Component {
             usernameRequired: "dispNone",
             passwordRequired : "dispNone",
             loggedIn : false,
-            loginSuccess : true
+            loginSuccess : true,
+            userInfo: []
 
-        }
+        };
+
+    }
+
+    componentWillMount(){
+
     }
     usernameChangeHandler = (e) => {
         this.setState({username : e.target.value});
@@ -49,11 +53,32 @@ class Login extends React.Component {
         this.setState({password : e.target.value});
 
     }
+
+    userSelfInfo(){
+        let xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === 4) {
+                  console.log(this.responseText);
+                //  let responseUser = JSON.parse(this.responseText).data;
+               //   console.log(responseUser);
+                //that.setState({
+                    // profile_picture : JSON.parse(this.responseText).data.profile_picture
+               // });
+            }
+        });
+        const  uri = this.props.baseUrl + "users/self/?access_token=" +sessionStorage.getItem("access-token").trim();
+        console.log(uri);
+        xhr.open("GET", uri);
+        xhr.setRequestHeader("Cache-Control", "no-cache");
+        xhr.send();
+
+    }
+
     loginClickHandler = () => {
 
         let userName = 'prakash';
         let userPassword= 'prakash';
-        const accessToken = '';
+        const accessToken = '8661035776.d0fcd39.87fd934e04f84253aaf234d8bd4e4c65';
 
         this.state.username === "" ? this.setState( { usernameRequired: "dispBlock"}) :
             this.setState( { usernameRequired: "dispNone"});
@@ -64,7 +89,8 @@ class Login extends React.Component {
             if (userPassword === this.state.password && userName === this.state.username) {
                 sessionStorage.setItem("access-token", accessToken);
                 this.setState({loggedIn: true});
-                this.props.history.push('/home')
+                //this.userSelfInfo();
+                this.props.history.push('/home');
             } else {
                 this.setState({loginSuccess: false});
             }
@@ -73,8 +99,9 @@ class Login extends React.Component {
     render() {
         const {classes} = this.props;
         return (
-            <div className={classes.root}>
-                <Header/>
+            <div>
+                <Header  baseUrl={this.props.baseUrl} loggedIn={this.loggedIn}/>
+                <div className={classes.root}>
                 <div className={classes.card}>
                     <Card>
                         <CardContent>
@@ -117,6 +144,7 @@ class Login extends React.Component {
                         </CardActions>
                     </Card>
                 </div>
+            </div>
             </div>
 
         );
