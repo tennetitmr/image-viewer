@@ -1,0 +1,24 @@
+.app-header {
+    background: #263238!important;
+    width: 100%;
+
+}
+.app-logo {
+    color: #fff!important;
+    font-size: 20px!important;
+}
+.search-box {
+    border-radius: 4px;
+    width: 300px;
+    background: #c0c0c0;
+    position: relative;
+}
+.searchIcon {
+    color:  #263238;
+    height: 100%;
+    position: absolute;
+    pointer-vents: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
