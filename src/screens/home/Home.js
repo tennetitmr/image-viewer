@@ -196,7 +196,7 @@ class Home extends React.Component {
                                                 {m.likes.count} Likes
                                             </Typography>
                                         </div>
-                                        <CardContent>
+                                        <div>
                                             {
                                                 this.state.comments.map(c => {
                                                     return (<p key={this.state.commentCount}>
@@ -205,7 +205,7 @@ class Home extends React.Component {
                                                     )
                                                 })
                                             }
-                                        </CardContent>
+                                        </div>
                                         <CardActions>
                                             <TextField
                                                 id="standard-with-placeholder"
