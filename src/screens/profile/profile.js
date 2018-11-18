@@ -14,6 +14,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteIcon from '@material-ui/icons/FavoriteBorder';
+import Header from "../../common/header/Header";
 
 const styles = theme => ({
 	root: {
@@ -98,7 +99,7 @@ const styles = theme => ({
 	},
 });
 
-class Profile extends Component {
+class Profile extends React.Component {
     constructor() {
         super();
         this.state = {
