@@ -36,7 +36,8 @@ class Login extends React.Component {
             passwordRequired : "dispNone",
             loggedIn : false,
             loginSuccess : true,
-            userInfo: []
+            userInfo: [],
+            profileHeader: true
 
         };
 
@@ -100,7 +101,9 @@ class Login extends React.Component {
         const {classes} = this.props;
         return (
             <div>
-                <Header  baseUrl={this.props.baseUrl} loggedIn={this.loggedIn}/>
+                <Header  baseUrl={this.props.baseUrl}
+                         profileHeader={this.state.profileHeader}
+                         loggedIn={this.loggedIn}/>
                 <div className={classes.root}>
                 <div className={classes.card}>
                     <Card>

@@ -1,0 +1,28 @@
+.flex-containerDiv {
+    display: flex;
+    justify-content: 'center';
+    border-width: 20px;
+    border-color: black;
+}
+
+userDiv {
+    display: flex;
+    align-items: 'center';   
+    margin: 10px;
+}
+
+.leftDiv {
+    width: 76%;
+}
+
+.rightDiv {
+    padding-left: 10px;
+}
+
+.likeDiv {
+    padding-top: 20px;
+    width: 100%;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+}

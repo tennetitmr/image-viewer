@@ -9,7 +9,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Favorite from '@material-ui/icons/Favorite';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Header from "../../common/header/Header";
@@ -17,7 +16,6 @@ import './Home.css';
 import Input from "@material-ui/core/Input/Input";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import FormControl from "@material-ui/core/FormControl/FormControl";
-
 const dateFormat = require('dateformat');
 
 class Home extends React.Component {
@@ -44,7 +42,7 @@ class Home extends React.Component {
     }
 
 
-    componentDidMount() {
+    componentWillMount() {
         console.log("calling api............");
         this.fetchUser();
         this.fetchUserMedia('');
