@@ -9,3 +9,9 @@
 .tag{
    display: flex;
 }
+.tag-like {
+    display: flex;
+}
+.likes {
+    padding-left: 1%;
+}
