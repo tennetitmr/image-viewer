@@ -12,6 +12,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import './Header.css';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import Input from "@material-ui/core/Input";
+import Avatar from "@material-ui/core/Avatar/Avatar";
 const styles = theme => ( {
     root: {
         flexGrow: 1,
@@ -104,7 +105,7 @@ class Header extends React.Component {
                             Image Viewer
                         </Typography>
                         <div>
-                            {auth && (
+                            {auth && !this.props.profileHeader && (
                             <div className= "search-box">
                                 <div className="searchIcon">
                                     <SearchIcon />
@@ -115,10 +116,12 @@ class Header extends React.Component {
                                         root: classes.inputRoot,
                                         input: classes.inputInput,
                                     }}
+                                    onChange={this.props.onChange}
                                 />
                             </div>
                             )}
                         </div>
+                        <div>
                         {auth  && (
                             <div>
                                 <IconButton
@@ -127,7 +130,10 @@ class Header extends React.Component {
                                     onClick={this.handleMenu}
                                     color="inherit"
                                 >
-                                    <AccountCircle />
+                                    <Avatar
+                                    src={this.props.profile_picture}
+                                    alt= "profile picture"
+                                    />
                                 </IconButton>
                                 <Menu
                                     id="menu-appbar"
@@ -148,6 +154,7 @@ class Header extends React.Component {
                                 </Menu>
                             </div>
                         )}
+                        </div>
                     </Toolbar>
                 </AppBar>
             </div>

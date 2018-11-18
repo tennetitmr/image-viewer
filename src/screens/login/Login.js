@@ -36,7 +36,8 @@ class Login extends React.Component {
             passwordRequired : "dispNone",
             loggedIn : false,
             loginSuccess : true,
-            userInfo: []
+            userInfo: [],
+            profileHeader: true
 
         };
 
@@ -100,18 +101,20 @@ class Login extends React.Component {
         const {classes} = this.props;
         return (
             <div>
-                <Header  baseUrl={this.props.baseUrl} loggedIn={this.loggedIn}/>
+                <Header  baseUrl={this.props.baseUrl}
+                         profileHeader={this.state.profileHeader}
+                         loggedIn={this.loggedIn}/>
                 <div className={classes.root}>
                 <div className={classes.card}>
                     <Card>
-                        <CardContent>
+                        <CardContent className= "app-login">
                             <FormControl>
                                 <Typography variant="h5" component="h2">
                                     LOGIN
                                 </Typography>
                             </FormControl>
                             <br/><br/>
-                            <FormControl required>
+                            <FormControl  style={{width: "100%"}} required>
                                 <InputLabel htmlFor="username">Username</InputLabel>
                                 <Input id="username" type="text" onChange={this.usernameChangeHandler}/>
                                 <FormHelperText className={this.state.usernameRequired}>
@@ -119,7 +122,7 @@ class Login extends React.Component {
                                 </FormHelperText>
                             </FormControl>
                             <br/><br/>
-                            <FormControl required>
+                            <FormControl  style={{width: "100%"}} required>
                                 <InputLabel htmlFor="password">Password</InputLabel>
                                 <Input id="password" type="password" onChange={this.passwordChangeHandler}/>
                                 <FormHelperText className={this.state.passwordRequired} > <span className="red">required</span>
@@ -128,13 +131,13 @@ class Login extends React.Component {
                         </CardContent>
                         <br /><br />
                         {this.state.loggedIn === true &&
-                        <FormControl>
+                        <FormControl  style={{width: "100%"}}>
                             <span className="successText">Login Successful! </span>
                         </FormControl>
                         }
                         {
                             this.state.loginSuccess === false &&
-                            <FormControl>
+                            <FormControl  style={{width: "100%"}}>
                                 <span className="red">Incorrect username and/or password </span>
                             </FormControl>
                         }

@@ -9,11 +9,13 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Favorite from '@material-ui/icons/Favorite';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Header from "../../common/header/Header";
 import './Home.css';
+import Input from "@material-ui/core/Input/Input";
+import InputLabel from "@material-ui/core/InputLabel/InputLabel";
+import FormControl from "@material-ui/core/FormControl/FormControl";
 const dateFormat = require('dateformat');
 
 class Home extends React.Component {
@@ -40,7 +42,7 @@ class Home extends React.Component {
     }
 
 
-    componentDidMount() {
+    componentWillMount() {
         console.log("calling api............");
         this.fetchUser();
         this.fetchUserMedia('');
@@ -79,14 +81,16 @@ class Home extends React.Component {
             })
     }
 
-    inputChangeHandler = (e) => {
+    //this is used to call search input of header
+    searchChangeHandler = (e) => {
         var searchString = e.target.value;
         // console.log("search.." + searchString);
+        let currentArray = this.state.media;
         if (searchString !== undefined && searchString !== '') {
             this.fetchUserMedia(e.target.value);
         } else {
-            this.setState({media: []})
-            // console.log("empty search.............." + this.state.media);
+            currentArray = [];
+            this.setState({media: currentArray})
         }
     }
 
@@ -117,136 +121,132 @@ class Home extends React.Component {
         }
     }
 
-    //addin comments to image
+    //adding comments to image card
     addClickHandler = (index) => {
-        console.log("add comment commentIndex : " + this.state.commentIndex + " index : " + index);
         let currentArray = this.state.comments;
         if (this.state.commentIndex !== index) {
             console.log("if true..............")
             this.setState({
-                commentIndex : -1,
-
+                commentIndex: -1,
             })
             currentArray = [];
         }
 
-            this.setState({
-                comments: currentArray.concat(this.state.commentText),
-                commentIndex: index
-            })
-
-        console.log("after end comment commentIndex : " + this.state.commentIndex + " index : " + index)
+        this.setState({
+            comments: currentArray.concat(this.state.commentText),
+            commentIndex: index
+        })
 
     }
-        commentChangeHandler = (e) => {
-            this.setState({commentText: e.target.value})
-        }
 
-        render()
-        {
+    //this used to change the state of comment input
+    commentChangeHandler = (e) => {
+        this.setState({commentText: e.target.value})
+    }
 
-            return (
-                <div>
-                    <Header {...this.props} onChange={this.inputChangeHandler}
-                            profile_picture={this.state.profile_picture}/>
-                    <Grid container spacing={16} className="grid-container">
-                        {this.state.media.length > 0 && this.state.media.map((m, index) => (
-                                <Grid item xs={6} key={m.id}>
-                                    <Card>
-                                        <CardHeader
-                                            avatar={
-                                                <Avatar aria-label="Recipe" src={this.state.profile_picture}/>
-                                            }
-                                            title={this.state.username}
-                                            subheader={dateFormat(new Date(parseInt(m.created_time)), "dd/mm/yyyy' 'HH:MM:ss")}
-                                        />
-                                        <CardContent>
-                                            <CardMedia
-                                                style={
-                                                    {
-                                                        height: 0,
-                                                        paddingTop: '56.25%'
-                                                    }
-                                                }
-                                                image={m.images.standard_resolution.url}
-                                                title="upgrade pic"
-                                            />
-                                            <hr/>
-                                            <Typography component="p" className="caption-text">
-                                                {m.caption.text.split('\n')[0]}
-                                            </Typography>
-                                            <div className="tag">
-                                                {m.tags.map((tag, i) => (
-                                                    <Typography style={{color: '#29B6F6'}} key={i}>
-                                                        #{tag} &nbsp;
-                                                    </Typography>
-                                                ))
-                                                }
-                                            </div>
-                                            <div className="tag-like">
-                                                <div>
-                                                    <IconButton aria-label="Add to favorites"
-                                                                onClick={() => this.likeClickHandler(m.likes.count, index)}>
-                                                        {this.state.active && index === this.state.id ? (
-                                                                <Favorite
-                                                                    color={this.state.like_button}
-                                                                    fontSize="large"
-                                                                />)
-                                                            :
-                                                            <FavoriteBorder
-                                                                fontSize="large"
-                                                            />
-                                                        }
-                                                    </IconButton>
-                                                </div>
-                                                <div className="likes">
-                                                    <Typography component="h2" variant="h6">
-                                                        {m.likes.count} Likes
-                                                    </Typography>
-                                                </div>
-
-                                            </div>
-                                            <div>
+    render() {
+        return (
+            <div>
+                <Header {...this.props} onChange={this.searchChangeHandler}
+                        profile_picture={this.state.profile_picture}/>
+                <Grid container spacing={16} className="grid-container">
+                    {this.state.media.length > 0 && this.state.media.map((m, index) => (
+                            <Grid item xs={6} key={m.id}>
+                                <Card>
+                                    <CardHeader
+                                        avatar={
+                                            <Avatar aria-label="Recipe" src={this.state.profile_picture}/>
+                                        }
+                                        title={this.state.username}
+                                        subheader={dateFormat(new Date(parseInt(m.created_time)), "dd/mm/yyyy' 'HH:MM:ss")}
+                                    />
+                                    <CardContent>
+                                        <CardMedia
+                                            style={
                                                 {
-                                                    this.state.commentIndex === index && this.state.comments.map((c, index )=>
-                                                        (<p key={index}>
-                                                                {c}
-                                                            </p>
-                                                        ))
+                                                    height: 0,
+                                                    paddingTop: '56.25%'
                                                 }
+                                            }
+                                            image={m.images.standard_resolution.url}
+                                            title="upgrade pic"
+                                        />
+                                        <hr/>
+                                        <Typography component="p" className="caption-text">
+                                            {m.caption.text.split('\n')[0]}
+                                        </Typography>
+                                        <div className="tag">
+                                            {m.tags.map((tag, i) => (
+                                                <Typography style={{color: '#29B6F6'}} key={i}>
+                                                    #{tag} &nbsp;
+                                                </Typography>
+                                            ))
+                                            }
+                                        </div>
+                                        <div className="tag-like">
+                                            <div>
+                                                <IconButton aria-label="Add to favorites"
+                                                            onClick={() => this.likeClickHandler(m.likes.count, index)}>
+                                                    {this.state.active && index === this.state.id ? (
+                                                            <Favorite
+                                                                color={this.state.like_button}
+                                                                fontSize="large"
+                                                            />)
+                                                        :
+                                                        <FavoriteBorder
+                                                            fontSize="large"
+                                                        />
+                                                    }
+                                                </IconButton>
                                             </div>
-                                            <CardActions>
-                                                <TextField
-                                                    id="standard-with-placeholder"
-                                                    placeholder="Add a comment"
-                                                    fullWidth
-                                                    margin="normal"
-                                                    onChange={this.commentChangeHandler}
-                                                />
-                                                <Button variant="contained" color="primary"
-                                                        onClick={() => this.addClickHandler(index)}
-                                                >
-                                                    ADD
-                                                </Button>
-                                            </CardActions>
-                                        </CardContent>
-                                    </Card>
+                                            <div className="likes">
+                                                <Typography component="h2" variant="h6">
+                                                    {m.likes.count} Likes
+                                                </Typography>
+                                            </div>
 
-                                </Grid>
+                                        </div>
+                                        <div>
+                                            {
+                                                this.state.commentIndex === index && this.state.comments.map((c, index) =>
+                                                    (<p key={index}>
+                                                            {c}
+                                                        </p>
+                                                    ))
+                                            }
+                                        </div>
+                                        <CardActions>
+                                            <FormControl style={{width: "100%"}}>
+                                                <InputLabel htmlFor="comment">Add a comment</InputLabel>
+                                            <Input
+                                                id="comment"
 
-                            )
-                        )}
-                    </Grid>
-                </div>
+                                                onChange={this.commentChangeHandler}
+                                            />
+                                            </FormControl>
+                                            <Button variant="contained" color="primary"
+                                                    onClick={() => this.addClickHandler(index)}
+                                            >
+                                                ADD
+                                            </Button>
+
+                                        </CardActions>
+                                    </CardContent>
+                                </Card>
+
+                            </Grid>
+
+                        )
+                    )}
+                </Grid>
+            </div>
 
 
-            )
-
-        }
+        )
 
     }
 
+}
 
-    export
-    default
-    Home;
+
+export default Home;
