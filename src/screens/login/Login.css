@@ -1,14 +1,10 @@
-
-
 .app-login{
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin-top : 15%;
     maxWidth: 345 px;
-
 }
-
 .dispNone {
     display: none;
 }

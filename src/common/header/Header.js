@@ -9,9 +9,9 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import InputBase from '@material-ui/core/InputBase';
 import './Header.css';
 import { fade } from '@material-ui/core/styles/colorManipulator';
+import Input from "@material-ui/core/Input";
 const styles = theme => ( {
     root: {
         flexGrow: 1,
@@ -101,7 +101,7 @@ class Header extends React.Component {
                 <AppBar position="static" className="app-header">
                     <Toolbar>
                         <Typography variant="h6" color="inherit" className={classes.grow}>
-                            Image Viewer  {console.log(this.props.loggedIn)}
+                            Image Viewer
                         </Typography>
                         <div>
                             {auth && (
@@ -109,7 +109,7 @@ class Header extends React.Component {
                                 <div className="searchIcon">
                                     <SearchIcon />
                                 </div>
-                                <InputBase
+                                <Input
                                     placeholder="Search…"
                                     classes={{
                                         root: classes.inputRoot,

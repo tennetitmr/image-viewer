@@ -1,0 +1,11 @@
+.grid-container {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 1%;
+}
+.caption-text{
+    white-space: pre-line;
+}
+.tag{
+   display: flex;
+}
