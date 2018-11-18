@@ -43,14 +43,18 @@ class Home extends React.Component {
 
 
     componentWillMount() {
-        console.log("calling api............");
+        if(sessionStorage.getItem("access-token") === null || sessionStorage.getItem("access-token") === '' ||
+            sessionStorage.getItem("access-token") === undefined){
+            this.props.history.push('/');
+            return;
+        }
         this.fetchUser();
         this.fetchUserMedia('');
     }
 
 
     fetchUser() {
-        fetch("https://api.instagram.com/v1/users/self/?access_token=8661035776.d0fcd39.87fd934e04f84253aaf234d8bd4e4c65")
+        fetch("https://api.instagram.com/v1/users/self/?access_token=" + sessionStorage.getItem("access-token"))
             .then(res => res.json())
             .then(result => {
                 //console.log(result.data.username);
@@ -63,7 +67,7 @@ class Home extends React.Component {
 
 
     fetchUserMedia(searchString) {
-        fetch("https://api.instagram.com/v1/users/self/media/recent?access_token=8661035776.d0fcd39.87fd934e04f84253aaf234d8bd4e4c65")
+        fetch("https://api.instagram.com/v1/users/self/media/recent?access_token=" + sessionStorage.getItem("access-token"))
             .then(res => res.json())
             .then(result => {
                 //console.log(result.data);

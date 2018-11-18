@@ -43,35 +43,12 @@ class Login extends React.Component {
 
     }
 
-    componentWillMount(){
-
-    }
     usernameChangeHandler = (e) => {
         this.setState({username : e.target.value});
     }
 
     passwordChangeHandler = (e) => {
         this.setState({password : e.target.value});
-
-    }
-
-    userSelfInfo(){
-        let xhr = new XMLHttpRequest();
-        xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === 4) {
-                  console.log(this.responseText);
-                //  let responseUser = JSON.parse(this.responseText).data;
-               //   console.log(responseUser);
-                //that.setState({
-                    // profile_picture : JSON.parse(this.responseText).data.profile_picture
-               // });
-            }
-        });
-        const  uri = this.props.baseUrl + "users/self/?access_token=" +sessionStorage.getItem("access-token").trim();
-        console.log(uri);
-        xhr.open("GET", uri);
-        xhr.setRequestHeader("Cache-Control", "no-cache");
-        xhr.send();
 
     }
 
