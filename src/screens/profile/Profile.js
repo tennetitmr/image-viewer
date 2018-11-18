@@ -200,7 +200,6 @@ class Profile extends Component {
         if (this.state.full_name_t !== "") {
             this.setState({full_name: this.state.full_name_t});
         }
-
         this.setState({modalIsOpen: false});
     }
 
@@ -244,21 +243,17 @@ class Profile extends Component {
     }
 
     commentClickHandler = () => {
-
         let commentsList = this.state.comments.slice();
         let starNode = [];
-
         starNode.user = this.state.username;
         starNode.content = this.state.comment;
         starNode.id = this.state.picId;
         commentsList.push(starNode);
-
         this.setState({comments: commentsList});
     }
 
     inputCommentChangeHandler = (e) => {
         this.setState({comment: e.target.value});
-        //Reset the input filed after submitting the form
         e.target.value = "";
     }
 
@@ -266,7 +261,6 @@ class Profile extends Component {
         const {classes} = this.props;
         return (
             <div>
-                {/* Header for profile Page */}
                 <Header {...this.props}
                         profileHeader={this.state.isProfilePage}
                         profile_picture={this.state.profile_pic}/>
@@ -323,7 +317,6 @@ class Profile extends Component {
                             <div>
                                 <img src={this.state.url} alt="pic"/>
                             </div>
-
                             <div className={classes.rightDiv}>
                                 <div className={classes.userDiv}>
                                     <Avatar src={this.state.profile_pic}/>
@@ -361,8 +354,7 @@ class Profile extends Component {
                                                 )
                                             ))}
                                         </span>
-
-                                        </Typography>
+                                    </Typography>
                                     </div>
                                     <div className={classes.userDiv}>
                                         <FormControl className={classes.comments}>
