@@ -121,6 +121,7 @@ class Header extends React.Component {
                             </div>
                             )}
                         </div>
+                        <div>
                         {auth  && (
                             <div>
                                 <IconButton
@@ -153,6 +154,7 @@ class Header extends React.Component {
                                 </Menu>
                             </div>
                         )}
+                        </div>
                     </Toolbar>
                 </AppBar>
             </div>
