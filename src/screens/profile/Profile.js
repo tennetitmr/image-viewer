@@ -144,6 +144,11 @@ class Profile extends Component {
     }
 
     componentWillMount() {
+        if(sessionStorage.getItem("access-token") === null || sessionStorage.getItem("access-token") === '' ||
+            sessionStorage.getItem("access-token") === undefined){
+            this.props.history.push('/');
+            return;
+        }
         let data = null;
         let xhr = new XMLHttpRequest();
         let that = this;
