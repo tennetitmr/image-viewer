@@ -196,7 +196,6 @@ class Profile extends Component {
     }
 
     editClickHandler = (e) => {
-        // If temporary full name is not null.
         if (this.state.full_name_t !== "") {
             this.setState({full_name: this.state.full_name_t});
         }
